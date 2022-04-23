@@ -1,0 +1,9 @@
+[submodule "job-scraper-next-client"]
+	path = job-scraper-next-client
+	url = https://github.com/k-wasilewski/job-scraper-next-client
+[submodule "job-scraper-node-server"]
+	path = job-scraper-node-server
+	url = https://github.com/k-wasilewski/job-scraper-node-server
+[submodule "job-scraper-spring-server"]
+	path = job-scraper-spring-server
+	url = https://github.com/k-wasilewski/job-scraper-spring-server
