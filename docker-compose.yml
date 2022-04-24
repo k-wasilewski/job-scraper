@@ -19,8 +19,8 @@ services:
       - "127.0.0.1:8081:8081"
     depends_on:
       - mongodb
+      - job-scraper-node-server
     stdin_open: true
-
 
   job-scraper-node-server:
     container_name: job-scraper-node-server
@@ -30,7 +30,7 @@ services:
     depends_on:
       - mongodb
     volumes:
-      - ./screenshots:./screenshots
+      - ./screenshots:/usr/src/app/screenshots
     stdin_open: true
 
   job-scraper-next-client:
