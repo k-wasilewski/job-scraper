@@ -42,3 +42,11 @@ services:
       - job-scraper-spring-server
       - job-scraper-node-server
     stdin_open: true
+
+  jenkins:
+    container_name: jenkins
+    image: liatrio/jenkins-alpine:latest
+    ports:
+      - "127.0.0.1:8082:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
