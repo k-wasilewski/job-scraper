@@ -13,3 +13,4 @@ db.createUser(
 
 db.createCollection('pages');
 db.createCollection('jobs');
+db.createCollection('users');
