@@ -2,6 +2,8 @@ services:
   mongodb:
     container_name: mongodb
     image: mongo:latest
+    logging:
+      driver: none
     ports:
       - "127.0.0.1:27017:27017"
     restart: always
@@ -46,6 +48,8 @@ services:
   jenkins:
     container_name: jenkins
     image: liatrio/jenkins-alpine:latest
+    logging:
+      driver: none
     ports:
       - "127.0.0.1:8082:8080"
     volumes:
