@@ -38,9 +38,8 @@ services:
     container_name: job-scraper-next-client
     image: job-scraper-next-client:latest
     ports:
-      - "3000:3000"
+      - "80:3000"
     depends_on:
       - job-scraper-spring-server
       - job-scraper-node-server
     stdin_open: true
-# TODO: after deploying on RasPi, expose Jenkins with http://localhost.run/, configure a pipeline on GitHub merging, create a Jenkinsfile, add a GitHub webhook
