@@ -2,3 +2,5 @@
 screenshots
 mongodb
 mongo-volume
+docker-compose.rpi.yml.save*
+jenkins_slave/*
