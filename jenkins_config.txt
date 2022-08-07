@@ -1,0 +1,37 @@
+Node
+  Name: job-scraper-deployment
+  Remote root directory: /home/pi/job-scraper/jenkins-slave
+  Labels: Job Scraper Docker deployment via SSH
+  Launch method: Launch agents via SSH
+  Host: 192.168.0.8
+  Credentials: pi/*****
+  Host Key Verification Strategy: Non verifying Verification Strategy
+  
+Job:
+  Name: job-scraper-deploy
+  Restrict where this project can be run:
+    Label Expression: job-scraper-deployment
+  SCM:
+    Git:
+      Repositories:
+        Repository URL: https://github.com/k-wasilewski/job-scraper.git
+        Credentials: k-wasilewski/*****
+      Branches to build:
+        Branch Specifier: */main
+      Additional Behaviours:
+        Recursively update submodules
+        Update tracking submodules to tip of branch
+        Use credentials from default remote of parent repository
+  Build:
+    Execute shell:
+
+docker-compose -f docker-compose.rpi.yml down
+cd job-scraper-spring-server
+docker build -f Dockerfile.rpi --platform linux/arm/v7 -t job-scraper-spring-server .
+cd ../job-scraper-node-server
+docker build -f Dockerfile.rpi --platform linux/arm/v7 -t job-scraper-node-server .
+cd ../job-scraper-next-client
+docker build -f Dockerfile.rpi --platform linux/arm/v7 -t job-scraper-next-client .
+cd ..
+docker-compose -f docker-compose.rpi.yml run mongodb mongod --repair
+docker-compose -f docker-compose.rpi.yml up -d
