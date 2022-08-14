@@ -1,2 +1,2 @@
 #!/bin/bash
-ssh -R 80:localhost:3000 nokey@localhost.run
+ssh -R 80:localhost:80 nokey@localhost.run
