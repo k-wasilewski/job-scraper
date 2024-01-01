@@ -6,9 +6,9 @@ services:
       - "27017:27017"
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: sa
-      MONGO_INITDB_ROOT_PASSWORD: password
-      MONGO_INITDB_DATABASE: scraping_db
+      - MONGO_INITDB_ROOT_USERNAME=sa
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=scraping_db
     volumes:
       - ./docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
       - ./mongo-volume:/data/db
@@ -18,37 +18,31 @@ services:
     image: job-scraper-spring-server:latest
     ports:
       - "8081:8081"
+    restart: always
     depends_on:
       - mongodb
       - job-scraper-node-server
     stdin_open: true
-    environment:
-      JAVA_OPTS: "-Xmx64m"
-      NEXT_CLIENT_HOST: "192.168.0.9:3000"
 
   job-scraper-node-server:
     container_name: job-scraper-node-server
     image: job-scraper-node-server:latest
     ports:
       - "8080:8080"
+    restart: always
     depends_on:
       - mongodb
     volumes:
       - ./screenshots:/usr/src/app/screenshots
     stdin_open: true
-    environment:
-      NEXT_CLIENT_HOST: "192.168.0.9:3000"
 
   job-scraper-next-client:
     container_name: job-scraper-next-client
     image: job-scraper-next-client:latest
     ports:
-      - "3000:3000"
+      - "80:3000"
+    restart: always
     depends_on:
       - job-scraper-spring-server
       - job-scraper-node-server
     stdin_open: true
-    environment:
-      NODE_SERVER_HOST: "192.168.0.9:8080"
-      SPRING_SERVER_HOST: "192.168.0.9:8081"
-# TODO: after deploying on RasPi, expose Jenkins with http://localhost.run/, configure a pipeline on GitHub merging, create a Jenkinsfile, add a GitHub webhook
