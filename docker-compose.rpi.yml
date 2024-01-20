@@ -19,6 +19,8 @@ services:
     ports:
       - "8081:8081"
     restart: always
+    environment:
+      - NEXT_CLIENT_HOST=192.168.0.8
     depends_on:
       - mongodb
       - job-scraper-node-server
@@ -30,6 +32,8 @@ services:
     ports:
       - "8080:8080"
     restart: always
+    environment:
+      - NEXT_CLIENT_HOST=192.168.0.8
     depends_on:
       - mongodb
     volumes:
@@ -42,6 +46,9 @@ services:
     ports:
       - "80:3000"
     restart: always
+    environment:
+      - NODE_SERVER_HOST=192.168.0.8:8080
+      - SPRING_SERVER_HOST=192.168.0.8:8081
     depends_on:
       - job-scraper-spring-server
       - job-scraper-node-server
