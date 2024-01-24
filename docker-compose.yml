@@ -46,7 +46,7 @@ services:
       - job-scraper-spring-server
       - job-scraper-node-server
     stdin_open: true
-# TODO: after deploying on RasPi, expose Jenkins with http://localhost.run/, configure a pipeline on GitHub merging, create a Jenkinsfile, add a GitHub webhook
+
   jenkins:
     container_name: jenkins
     image: liatrio/jenkins-alpine:latest
@@ -56,3 +56,4 @@ services:
       - "127.0.0.1:8082:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./jenkins_home:/var/jenkins_home
