@@ -1,16 +1,17 @@
-# Deploy to Raspberry Pi
-
 Submodules:
 - `job-scraper-spring-server`
 - `job-scraper-node-server`
 - `job-scraper-next-client`
+
+
+- # Deploy to Raspberry Pi
 
 1. Edit hosts in submodules' `Dockerfile.rpi`s to match your RasPi IP.
 
 2. Build images on RasPi:
 ```
 $ cd [submodule]
-$ docker build -f Dockerfile.rpi -t [submodule] --platform linux/amd/v7
+$ docker build -f Dockerfile.rpi -t [submodule] --platform linux/amd/v7 .
 ```
 
 3. Edit hosts in `docker-compose.rpi.yml` to match your RasPi IP.
@@ -19,6 +20,21 @@ $ docker build -f Dockerfile.rpi -t [submodule] --platform linux/amd/v7
 ```
 $ docker-compose -f docker-compose.rpi.yml up
 ```
+
+
+# Deploy to Win/Unix
+
+2. Build images:
+```
+$ cd [submodule]
+$ docker build -t [submodule] .
+```
+
+4. Run composer:
+```
+$ docker-compose up
+```
+
 
 ## User flow:
 #### 1 - Add / edit config
