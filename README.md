@@ -1,10 +1,9 @@
-Submodules:
-- `job-scraper-spring-server`
-- `job-scraper-node-server`
-- `job-scraper-next-client`
+# job-scraper
+
+A job offer web scraper, managing user accounts and their settings as well as the data gathered (links and screenshots). The actual web scraping is performed by Pupeteer on a NodeJs server, scrapes' scheduling is done on a Reactive Spring Boot server; both APIs are exposed via a server-side-rendered NextJs client. All three communicate between each other via GraphQL API and websockets, storing data in a MongoDB database. The app is developed on Win/Unix and deployed on a Raspberry Pi via Docker Engine. The deployments are managed by a CI/CD Jenkins pipeline, hosted on another Raspberry Pi. Both are exposed to the web with SSH tunneling.
 
 
-- # Deploy to Raspberry Pi
+## Deploy to Raspberry Pi
 
 1. Edit hosts in submodules' `Dockerfile.rpi`s to match your RasPi IP.
 
@@ -22,7 +21,7 @@ $ docker-compose -f docker-compose.rpi.yml up
 ```
 
 
-# Deploy to Win/Unix
+## Deploy to Win/Unix
 
 2. Build images:
 ```
