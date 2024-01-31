@@ -9,6 +9,7 @@ Node
   
 Job:
   Name: job-scraper-deploy
+  Discard old builds
   Restrict where this project can be run:
     Label Expression: job-scraper-deployment
   SCM:
